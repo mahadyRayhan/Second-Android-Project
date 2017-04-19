@@ -20,6 +20,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +48,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     private TextView cityNameTV;
     private List<Address> addresses;
-    private String city;
+    private String city = "";
+
+    private TextView ct;
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         tabLayout.setupWithViewPager(mViewPager);
 
         cityNameTV = (TextView) findViewById(R.id.cityName);
+        ct = (TextView) findViewById(R.id.ct);
 
         geocoder = new Geocoder(this);
 
@@ -79,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
-
     }
 
     @Override
@@ -118,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
+
+
     @Override
     public void onLocationChanged(Location location) {
         double latitude =  location.getLatitude();
@@ -131,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     //region comment
@@ -190,21 +197,29 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    firstFragment fragmnetOne =new firstFragment();
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
+                    firstFragment fragmnetOne =new firstFragment();
+                    /*cityNameTV.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                    firstFragment first_fragment = new firstFragment();
+                        }
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            city =s.toString();
+                        }
+                        @Override
+                        public void afterTextChanged(Editable s) {
+
+                        }
+                    });*/
                     Bundle b = new Bundle();
-                    b.putString("country",city);
-                    first_fragment.setArguments(b);
-                    ft.add(R.id.container,first_fragment);
+                    b.putString("country", "");
+                    fragmnetOne.setArguments(b);
                     ft.addToBackStack(null);
-                    //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                     ft.commit();
-
-
-
                     return fragmnetOne;
                 case 1:
                     seconfFragment fragmnetTwo =new seconfFragment();
@@ -229,6 +244,5 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             return null;
         }
     }
-
 
 }

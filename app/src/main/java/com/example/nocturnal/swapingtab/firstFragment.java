@@ -30,10 +30,13 @@ public class firstFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_first, container, false);
 
+
+
+        /*MainActivity mainActivity = new MainActivity();
+        mainActivity.getCity();*/
+
         city_nameTV = (TextView) v.findViewById(R.id.city_name);
-        //city_nameTV.setText("city");
-        //city_nameTV.setText(getArguments().getString("country"));
-        //getArguments().getString("country");
+        city_nameTV.setText(getArguments().getString("country").toString());
 
         return v;
     }

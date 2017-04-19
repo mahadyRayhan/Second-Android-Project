@@ -31,6 +31,7 @@
                 android:weightSum="6"
                 android:layout_gravity="center_horizontal">
                 <TextView
+                    android:id="@+id/ct"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Curent City   : "
