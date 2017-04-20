@@ -1,25 +1,30 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#80003053"
+    android:orientation="vertical"
     tools:context="com.example.nocturnal.swapingtab.firstFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/date_time"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textAlignment="center"
         android:padding="10dp"
+        android:text="dsadasda"
         android:textColor="#fff"
        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="140sp"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:gravity="center"
+        android:layout_marginTop="-35dp"
+        android:paddingLeft="90dp">
         <TextView
             android:id="@+id/temp"
             android:layout_width="wrap_content"
@@ -27,16 +32,27 @@
             android:textSize="120sp"
             android:textAlignment="center"
             android:paddingTop="10dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="0dp"
             android:text="13"
             android:textColor="#fff"
             />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:paddingTop="10dp"
+            android:paddingTop="0dp"
             android:paddingLeft="-50dp"
             android:src="@drawable/degr"/>
     </LinearLayout>
+    <TextView
+        android:id="@+id/climate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:text="adadasdasdasd"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="-10dp"
+        android:textColor="#fff"
+        />
 
-</FrameLayout>
+</LinearLayout>

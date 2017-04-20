@@ -27,6 +27,7 @@ public class firstFragment extends Fragment {
     private String city;
     private TextView date_timeTV;
     private TextView tempTv;
+    private TextView climateTv;
 
     String fullUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22dhaka%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
@@ -46,6 +47,7 @@ public class firstFragment extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_first, container, false);
         date_timeTV = (TextView) v.findViewById(R.id.date_time);
         tempTv = (TextView) v.findViewById(R.id.temp);
+        climateTv = (TextView) v.findViewById(R.id.climate);
         //date_timeTV.setText(getArguments().getString("country").toString());
 
 
@@ -69,7 +71,11 @@ public class firstFragment extends Fragment {
             public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
                 WeatherData weatherData = response.body();
                 date_timeTV.setText(weatherData.getQuery().getResults().getChannel().getLastBuildDate().toString());
-                tempTv.setText(weatherData.getQuery().getResults().getChannel().getItem().getCondition().getTemp().toString());
+                String temp = weatherData.getQuery().getResults().getChannel().getItem().getCondition().getTemp().toString();
+                int tempDeg = (Integer.parseInt(temp)-32)/9*5;
+                temp = Integer.toString(tempDeg);
+                tempTv.setText(temp);
+                climateTv.setText(weatherData.getQuery().getResults().getChannel().getItem().getCondition().getText().toString());
             }
 
             @Override
