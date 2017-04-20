@@ -60,7 +60,9 @@ public class seconfFragment extends Fragment {
 
         getWeatherData();
 
+        forecastAdapter = new ForecastAdapter(inflater.getContext(),forecastArrayList);
 
+        myListView.setAdapter(forecastAdapter);
 
         return v;
     }
@@ -72,8 +74,8 @@ public class seconfFragment extends Fragment {
             @Override
             public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
                 WeatherData weatherData = response.body();
-                //forecastArrayList = response.body().getQuery().getResults().getChannel().getItem().getForecast();
-                //forecastAdapter = new ForecastAdapter(this,forecastArrayList);
+                forecastArrayList = (ArrayList<Forecast>) response.body().getQuery().getResults().getChannel().getItem().getForecast();
+
             }
 
             @Override
