@@ -60,7 +60,7 @@ public class seconfFragment extends Fragment {
 
         getWeatherData();
 
-        //forecastAdapter = new ForecastAdapter(this,);
+
 
         return v;
     }
@@ -72,7 +72,8 @@ public class seconfFragment extends Fragment {
             @Override
             public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
                 WeatherData weatherData = response.body();
-                forecastArrayList = (ArrayList<Forecast>) weatherData.getQuery().getResults().getChannel().getItem().getForecast();
+                //forecastArrayList = response.body().getQuery().getResults().getChannel().getItem().getForecast();
+                //forecastAdapter = new ForecastAdapter(this,forecastArrayList);
             }
 
             @Override

@@ -41,7 +41,7 @@
             android:layout_height="100dp"
             android:paddingTop="0dp"
             android:paddingLeft="-50dp"
-            android:src="@drawable/degr"/>
+            android:src="@drawable/degrw"/>
     </LinearLayout>
     <TextView
         android:id="@+id/climate"
